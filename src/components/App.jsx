@@ -31,6 +31,9 @@ function App() {
     (accumulator, currentValue) => accumulator + currentValue
   );
 
+  //Обчислюємо відсоток позитивних відгуків
+  const positiveFeedback = Math.round((reviewsData.good / totalFeedback) * 100);
+
   //Обробляємо події після натискання кнопок
   function updateFeedback(feedbackType) {
     //Якщо настиснута кнопка Reset - зберігаємо початкове значення об'єкту
@@ -56,7 +59,11 @@ function App() {
       {totalFeedback === 0 ? (
         <Notification />
       ) : (
-        <Feedback reviewsData={reviewsData} totalFeedback={totalFeedback} />
+        <Feedback
+          reviewsData={reviewsData}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
       )}
     </>
   );
