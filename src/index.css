@@ -61,3 +61,7 @@ button {
   overflow: hidden;
 }
 /* #endregion reset */
+
+body {
+  padding: 2px;
+}
