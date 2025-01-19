@@ -63,5 +63,7 @@ button {
 /* #endregion reset */
 
 body {
-  padding: 2px;
+  padding: 5px;
+  margin: 0 auto;
+  text-align: center;
 }

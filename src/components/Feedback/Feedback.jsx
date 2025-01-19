@@ -1,4 +1,5 @@
 import capitalizeFirstLetter from '../../helpers/capitalizeFirstLetter';
+import { Chart } from '../Chart/Chart';
 import s from './Feedback.module.css';
 
 export default function Feedback({
@@ -8,8 +9,11 @@ export default function Feedback({
 }) {
   //Отримуємо ключі об'єкту
   const reviewsOptions = Object.keys(reviewsData);
+  //Отримуємо дані об'єкту
+  const reviewsOptionsData = Object.values(reviewsData);
+
   return (
-    <>
+    <div className={s.feedback}>
       <ul className={s.list}>
         {/* Виводимо всі дані з об'єкту reviewsData*/}
         {reviewsOptions.map(options => (
@@ -28,6 +32,7 @@ export default function Feedback({
           <p className={s.dsc}>Positive: {positiveFeedback}</p>
         </li>
       </ul>
-    </>
+      {/* <Chart labels={reviewsOptions} datasetsData={reviewsOptionsData} /> */}
+    </div>
   );
 }

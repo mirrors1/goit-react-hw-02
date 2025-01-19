@@ -3,6 +3,8 @@ import Description from './Description/Description';
 import Options from './Options/Options';
 import Feedback from './Feedback/Feedback';
 import Notification from './Notification/Notification';
+import { Chart } from './Chart/Chart';
+import s from './App.module.css';
 
 const LS_KEY = 'feedback-cd330120-98f4-4795-8a1e-2acb7efad19c';
 
@@ -19,9 +21,21 @@ function App() {
   const [reviewsData, setReviewsData] = useState(
     () => JSON.parse(localStorage.getItem(LS_KEY)) ?? initReviewsData
   );
+  // Отримуємо ключі для діаграми
+  const [reviewsOptions, setReviewOption] = useState(
+    Object.keys(reviewsData) ?? []
+  );
+  // Отримуємо дані для діаграми
+  const [reviewsOptionsData, setReviewOptionData] = useState(
+    Object.values(reviewsData) ?? []
+  );
 
   //При зміні значень об'єкту зберігаємо дані в LocalStorage
   useEffect(() => {
+    //Оновлюємо список ключів
+    setReviewOption(Object.keys(reviewsData) ?? []);
+    //Оновлюємо список значень
+    setReviewOptionData(Object.values(reviewsData) ?? []);
     localStorage.setItem(LS_KEY, JSON.stringify(reviewsData));
   }, [reviewsData]);
 
@@ -59,11 +73,14 @@ function App() {
       {totalFeedback === 0 ? (
         <Notification />
       ) : (
-        <Feedback
-          reviewsData={reviewsData}
-          totalFeedback={totalFeedback}
-          positiveFeedback={positiveFeedback}
-        />
+        <div className={s.feedbackContainer}>
+          <Feedback
+            reviewsData={reviewsData}
+            totalFeedback={totalFeedback}
+            positiveFeedback={positiveFeedback}
+          />
+          <Chart labels={reviewsOptions} datasetsData={reviewsOptionsData} />
+        </div>
       )}
     </>
   );
