@@ -29,7 +29,7 @@ export default function Feedback({
           <p className={s.dsc}>Total: {totalFeedback}</p>
         </li>
         <li className={s.item}>
-          <p className={s.dsc}>Positive: {positiveFeedback}</p>
+          <p className={s.dsc}>Positive: {positiveFeedback}&#37;</p>
         </li>
       </ul>
       {/* <Chart labels={reviewsOptions} datasetsData={reviewsOptionsData} /> */}
